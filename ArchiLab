@@ -1,0 +1,558 @@
+<style>
+
+:root{
+    --accent:#7b8ffe;
+    --spacing: 1em
+}
+
+body{
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    }
+
+    *{
+        box-sizing: border-box;
+    }
+    
+    a{
+        color: #111;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 0.7em;
+        letter-spacing: 1px;
+        transition: 0.3s;
+    }
+
+    span{
+        text-transform: uppercase;
+        font-size: 0.7em;
+        font-weight: 700;
+        transition: 0.3s;
+    }
+
+    p{
+        color: #979696;
+        font-size: 0.8em;
+        line-height: 30px;
+        letter-spacing: 1px;
+    }
+
+    ul{
+        list-style-type: none;
+        padding: 0;
+        text-align: center;
+    }
+
+    h1{
+        font-size: 3.3em;
+        line-height: 1.3em;
+    }
+
+    header{
+        padding: var(--spacing);
+        background: #fff;
+        height: calc(100vh - 0em);
+        
+    }
+
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        max-width: 1350px;
+        height: 100%;
+        margin: 0 auto;
+    }
+
+    /* Navbar*/
+
+    nav{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: var(--spacing);
+        width: 100%;
+    }
+
+    ul a, ul span{
+        font-weight: 700;
+        background-image: linear-gradient(0deg, #113, #113);
+        background-repeat: no-repeat;
+        background-size: 0 2px;
+        padding-bottom: 10px;
+        background-position: 50% bottom;
+    }
+
+    ul a:hover,
+    ul span:hover,
+    .controls span:hover,
+    .controls span:hover,
+    .search:focus{
+        background-size: 100% 2px;
+        background-image: linear-gradient(0deg, var(--accent), var(--accent));
+    }
+
+    nav span{
+        cursor: pointer;
+    }
+
+    .brand{
+        text-transform: capitalize;
+        font-size: 1.2em;
+    }
+
+    nav li{
+        display: inline-block;
+        margin: 0 0.7em;
+    }
+
+    .search{
+        text-align: center;
+        border: none;
+        outline: none;
+        width: 8em;
+        transition: 0.3s;
+    }
+
+    .search, .controls span, .active{
+        background-image: linear-gradient(0deg, #113, #113);
+        background-size: 50% 2px;
+        padding-bottom: 10px;
+        background-position: 50% bottom;
+        background-repeat: no-repeat;
+    }
+
+    .search::placeholder{
+        color: #113;
+        font-size: 0.9em;
+        letter-spacing: 1px;
+        font-weight: 700;
+    }
+
+    .search:focus{
+        background-size: 120% 2px;
+    }
+
+    .form-mobile{
+        display: none;
+    }
+
+    .menu-btn{
+        display: none;
+        background: none;
+    }
+
+    /* Header*/
+
+    .header-body{
+        display: grid;
+        grid-template-columns: 1fr 1fr 3em;
+        justify-content: center;
+        align-content: center;
+    }
+
+    .header-body > div{
+        margin: 0 var(--spacing);
+    }
+
+    .slider img{
+        width: 100%;
+        height: 100%;
+    }
+
+    .slider{
+        position: relative;
+    }
+
+    .decoration-left,  .decoration-right{
+        background: var(--accent);
+        position: absolute;
+        z-index: 1;
+    }
+
+    .decoration-left{
+        top: 50%;
+        left: -8%;
+        width: 16%;
+        height: 70%;
+        transform: translateY(-50%);
+        writing-mode: vertical-rl;
+        color: #fff;
+        font-size: 0.8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        animation: slide1;
+        }
+
+        .decoration-right{
+            bottom: 0;
+            right: -8%;
+            width: 16%;
+            height: 12em;
+            animation: slide2;
+        }
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 48
+}
+
+
+        .overlay{
+            position: absolute;
+            background: #fff;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            animation: slide3;
+            z-index: 0;
+        }
+
+        .anim{
+            animation-duration: 0.8s;
+            animation-timing-function: cubic-bezierr(.39, .08, .93, .42);
+        }
+
+        .text{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .text > div{
+            max-width: 27em;
+        }
+
+        .text p{
+            background-image: linear-gradient(0deg, var(--accent), var(--accent));
+            background-repeat: no-repeat;
+            background-size: 3px 100%;
+            padding-left: var(--spacing);
+            background-position: 0 0;
+        }
+
+        .social{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .social li{
+            margin: 1.5em 0;
+            writing-mode: vertical-rl;
+            font-weight: 700;
+        }
+
+        /*Header Bottom*/
+
+        .header-bottom{
+            margin: var(--spacing) 0 0 0;
+        }
+
+        .active{
+            color: var(--accent);
+            background-image: linear-gradient(0deg, var(--accent), var(--accent));
+            }
+
+    .controls span{
+        margin:  0 0.5em;
+    }
+
+
+    /*Animation Movement*/
+
+    @keyframes slide1{
+        0%{height: 0;}
+        100%{height: 70%;}
+    }
+
+    @keyframes slide2{
+        0%{height: 0;}
+        100%{height: 12em;}
+    }
+
+    @keyframes slide3{
+        0%{height: 100%;}
+        100%{height: 0;}
+    }
+/*Responsive design*/
+
+@media screen and (max-width: 1000px){
+    .menu-btn{
+        display: block;
+    }
+
+    nav .menu{
+        background: #fff;
+        position: absolute;
+        left: 0;
+        top: 5em;
+        width: 100%;
+        height: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        opacity: 0;
+        transition: 0.6s;
+        overflow: hidden;
+        z-index: 9;
+    }
+
+    /*js toggle*/
+
+    nav .menu-open{
+        opacity: 1;
+        height: 85%;
+        overflow: visible;
+    }
+
+    nav .menu li{
+        margin: 1em 0;
+    }
+
+    form:not(.form-mobile){
+        display: none;
+    }
+
+    .form-mobile{
+        display: block;
+        margin-top: 1.6em;
+    }
+}
+
+@media screen and (max-width: 850px) {
+    header{
+        height: initial;
+    }
+
+    .header-body{
+        grid-template-columns: 1fr;
+    }
+
+    .header-body > div:not(.slider){
+        margin: var(--spacing) 0;
+    }
+
+    .slider{
+        margin: var(--spacing) 0;
+    }
+
+    .pagination{
+        display: none;
+    }
+
+    .social{
+        flex-direction: row;
+    }
+
+    .social li{
+        margin: 0 1.5em;
+        writing-mode: initial;
+    }
+}
+
+@media screen and (max-height: 430px) {
+    header .menu-open{
+        height: 600px;
+    }
+}
+</style>
+<body>
+
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <header>
+        <div class="container">
+            <nav>
+                <!-- Logo name-->
+                <a href="morden landing page.html" class="brand">ArchiLab</a>
+                <ul class="menu">
+                    <!-- Navbar-->
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <!--Search Bar-->
+                    <li><form class="form-mobile">
+                        <input type="text" class="search" placeholder="Search Archilab">
+                    </form></li>
+                    
+                </ul>
+                <form>
+                    <input type="text"
+                     class="search"
+                     placeholder="Search Archilab">
+                </form>
+                <button class="menu-btn">
+                    <span class="material-symbols-outlined">segment</span>
+                </button>
+            </nav>
+
+            <div class="header-body">
+                <div class="slider">
+                    <div class="decoration-left anim">
+                        Explore
+                      <span class="material-symbols-outlined">
+trending_flat
+</span>
+                                            </div>
+                    <div class="decoration-right anim"></div>
+                    <div class="overlay anim"></div>
+                    <img src="https://media.architecturaldigest.com/photos/5d3f6c8084a5790008e99f37/master/w_3000,h_2123,c_limit/GettyImages-1143278588.jpg"
+                     class="slider-img">
+                </div>
+                <div class="text">
+                    <div>
+                        <h1>Archi<br>.Lab</h1>
+                        <p>Archilab is an architecture firm that specializes in cutting-edge design and innovation. With a focus on creativity, functionality, and sustainability, Archilab is dedicated to creating spaces that are not only beautiful, but also practical and environmentally conscious. Their team of talented architects and designers work closely with clients to understand their unique needs and bring their vision to life. From conceptual design to project management, Archilab is committed to delivering exceptional results that exceed expectations. With a passion for pushing boundaries and exploring new ideas, Archilab is a leader in the world of modern architecture.
+                        </p>
+                    </div>
+                </div>
+                <ul class="social">
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                </ul>
+            </div>
+
+            <nav class="header-bootm">
+                <div class="controls">
+                    <span class="prev">Prev </span>
+                    <span class="next">Next</span>
+                </div>
+                <ul class="pagination">
+                    <li class="pag active">
+                    <span>01</span></li>
+                    <li class="pag">
+                        <span>02</span></li>
+                        <li class="pag">
+                            <span>03</span></li>
+                            <li class="pag">
+                                <span>04</span></li>
+
+                </ul>
+
+                <span>Pennsylvania, USA</span>
+
+            </nav>
+
+        </div>
+    </header>
+
+    <script src="morden.js">
+/* Navbar*/
+const menu = document.querySelector('.menu');
+const menuBtn = document.querySelector('.menu-btn');
+
+// Toggle
+
+menuBtn.addEventListener('click', () => {
+    menu.classList.toggle('menu-open');
+});
+
+// slider
+const pag = document.querySelectorAll('.pag');
+const prev = document.querySelector('.prev');
+const next = document.querySelector('.next');
+const overlay = document.querySelector('.overlay');
+const img = document.querySelector('.slider-img');
+const anim = document.querySelector('.anim');
+
+//css root
+
+const r = document.querySelector(':root');
+const rs = getComputedStyle(r);
+
+let id = 0;
+
+// images 
+const images = [
+    'http://cdn.cnn.com/cnnnext/dam/assets/220905135356-03-manas-bhatia-future-cities-ai.jpg',
+    'https://thearchitecturedesigns.com/wp-content/uploads/2020/03/office-building-4-759x500.jpg',
+    'https://uploads-ssl.webflow.com/612c61d168e4642080d8c5b2/62b195562f13238341670b18_Walt-Disney-Concert-Hall-.jpeg',
+    'https://www.librarybuildings.eu/wp-content/uploads/2020/05/2014_at_WIE_image_21-500x350.jpg',
+];
+
+//Theme colors
+
+const colors = [
+    '#C9B071',
+    '#596457',
+    '#E67ADD',
+    '#FDE075',
+];
+
+//trigger animation
+function retrigAnim() {
+    for (let i =0; i < anim.length; i++){
+        anim[i].style.animation = 'none';
+        anim[i].offsetHeight;
+        anim[i].style.animation = null;
+    }
+}
+
+function slider(i){
+    retrigAnim();
+    img.src = images[i];
+    r.style.setProperty('--accent', colors[i]);
+    for (let i = 0; i < pag.length; i++){
+        pag[i].classList.remove('active');
+    }
+    pag[i].classList.add('active');
+}
+
+//page start
+for (let i = 0; i < pag.length; i++) {
+    pag[i].addEventListener('click', () => {
+        slider(i);
+        id = i;
+        stopAutoSlide()
+        
+    });
+}
+
+//prev
+prev.addEventListener('click', () => {
+    id--;
+    if(id < 0){
+        id = pag.length - 1;
+    }
+
+    slider(id);
+
+    stopAutoSlide();
+
+});
+
+//Next
+next.addEventListener('click', () => {
+    nextSlide();
+    stopAutoSlide();
+});
+
+function nextSlide(){
+    id++;
+    if (id > pag.length - 1){
+        id = 0;
+    }
+
+    slider(id);
+}
+
+let autoSlide = setInterval(nextSlide, 10000);
+
+function stopAutoSlide(){
+    clearInterval(autoSlide);
+
+    autoSlide = setInterval(nextSlide, 10000);
+}
+</script>
+</body>
